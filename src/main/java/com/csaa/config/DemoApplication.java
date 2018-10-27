@@ -297,11 +297,11 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 	            from("direct:invokeSOAP")
 	            .log(">>>2 ${body}")
 	            .removeHeaders("*")// remove all the spurious heade, which camel was injecting plus the client headerr 
-	            .to("spring-ws:https://prod-soaservices.ent.rt.csaa.com:8445/RetrieveConvertedPolicyInfoV2?soapAction=http://www.aaancnuit.com.retrieveConvertedPolicyInfo&sslContextParameters=#sslParameters")
+	            .to("spring-ws:http://sit-soaservices.tent.trt.csaa.pri:42000/RetrieveConvertedPolicyInfoV2?soapAction=http://www.aaancnuit.com.retrieveConvertedPolicyInfo&sslContextParameters=#sslParameters")
 	            .log(">>>3 ${body}")
 	            .unmarshal(responseMappingjaxb)
 	            .bean(requestProcessor,"processGetConvertedPolicyResp")
-	            .marshal(jacksonDataFormat)// if i am explicityl marshalling, then response is in base 64 format 
+	            //.marshal(jacksonDataFormat)// if i am explicityl marshalling, then response is in base 64 format 
 	            .log(">>>4 ${body}")
 	           .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(200));
 	            
